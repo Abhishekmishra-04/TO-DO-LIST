@@ -1,14 +1,105 @@
 # TO-DO-LIST
-In this project, you’ll build a sleek and user-friendly to-do list application where users can effortlessly add, edit, and remove tasks. Gain valuable experience in DOM manipulation and event handling as you bring your to-do list to life with smooth interactions and real-time updates.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #289968;
+        }
 
-Whether you’re a beginner looking to grasp the fundamentals or an intermediate developer eager to enhance your skills, this project provides a practical playground to understand the synergy of HTML, CSS, and JavaScript in creating a functional and visually appealing application.
+        .container {
+            text-align: center;
+            background-color: #c5c795;
+            height: 600px;
+            width: 800px;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-Join us on this coding journey and craft a To-Do List that not only streamlines tasks but also serves as a testament to your growing proficiency in web development. Start coding now and elevate your understanding of front-end technologies!
+        input {
+            padding: 8px;
+            font-size: 20px;
+            width: 300px;
+        }
 
-Step into a realm of heightened productivity and immaculate organization! Our To-Do List Web App, intricately crafted using HTML, CSS, and JavaScript, becomes your master key to efficient task management.
+        button {
+            padding: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 20px;
+        }
 
-The seamless processes of adding, completing, and deleting tasks redefine user intuition. This project is a living testament to the simplicity and robust capabilities of web development, beckoning both novices and enthusiasts to explore essential technologies.
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
 
-Propel your productivity and delve into the coding universe with this immersive To-Do List Web App.
+        ul {
+            list-style: none;
+            padding: 0;
+        }
 
-Unveil the harmony between user-friendly design and dynamic functionality, empowering you to seize control of your daily tasks in this enthralling web development venture.
+        li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>To-Do List</h1>
+    <div>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <button onclick="addTask()">Add</button>
+    </div>
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+    function addTask() {
+        const taskInput = document.getElementById('taskInput');
+        const taskList = document.getElementById('taskList');
+
+        if (taskInput.value.trim() !== '') {
+            const task = document.createElement('li');
+            task.innerText = taskInput.value;
+
+            // Add a button to mark task as complete
+            const completeButton = document.createElement('button');
+            completeButton.innerText = 'Complete';
+            completeButton.onclick = function() {
+                task.classList.toggle('completed');
+            };
+
+            // Add a button to delete task
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Delete';
+            deleteButton.onclick = function() {
+                task.remove();
+            };
+
+            task.appendChild(completeButton);
+            task.appendChild(deleteButton);
+
+            taskList.appendChild(task);
+            taskInput.value = ''; // Clear the input field
+        }
+    }
+</script>
+
+</body>
+</html>
+
